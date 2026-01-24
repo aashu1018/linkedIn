@@ -10,15 +10,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class PostLikeService {
 
-    private PostLikeRepository postLikeRepository;
-    private PostRepository postRepository;
-    private ModelMapper modelMapper;
+    private final PostLikeRepository postLikeRepository;
+    private final PostRepository postRepository;
+    private final ModelMapper modelMapper;
 
     public void likePost(Long postId, Long userId) {
 
@@ -40,16 +41,17 @@ public class PostLikeService {
 
     }
 
+    @Transactional
     public void unlikePost(Long postId, Long userId) {
         log.info("Attempting to unlike the post with id: {}", postId);
 
-        boolean exists = postLikeRepository.existsById(postId);
+        boolean exists = postRepository.existsById(postId);
         if(!exists){
             throw new ResourceNotFoundException("Post with id: " + postId + " is not present");
         }
 
         boolean alreadyUnliked = postLikeRepository.existsByPostIdAndUserId(postId, userId);
-        if(alreadyUnliked){
+        if(!alreadyUnliked){
             throw new BadRequestException("The post has already been unliked!");
         }
 
