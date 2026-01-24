@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/posts")
 @RequiredArgsConstructor
@@ -27,5 +29,11 @@ public class PostsController {
     private ResponseEntity<PostDTO> getPost(@PathVariable Long postId){
         PostDTO post = postsService.getPostById(postId);
         return ResponseEntity.ok(post);
+    }
+
+    @GetMapping("/users/{userId}/allPosts")
+    private ResponseEntity<List<PostDTO>> getAllPosts(@PathVariable Long userId){
+        List<PostDTO> posts = postsService.getAllPostsOfUser(userId);
+        return ResponseEntity.ok(posts);
     }
 }
