@@ -2,7 +2,6 @@ package com.linkedIn.posts_service.controller;
 
 import com.linkedIn.posts_service.dto.PostCreateRequestDTO;
 import com.linkedIn.posts_service.dto.PostDTO;
-import com.linkedIn.posts_service.entity.Post;
 import com.linkedIn.posts_service.service.PostsService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/core")
 @RequiredArgsConstructor
 public class PostsController {
 
