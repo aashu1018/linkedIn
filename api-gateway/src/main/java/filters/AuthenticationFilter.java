@@ -1,7 +1,6 @@
 package filters;
 
 import io.jsonwebtoken.JwtException;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpStatus;
@@ -10,14 +9,14 @@ import org.springframework.web.server.ServerWebExchange;
 import service.JWTService;
 
 @Component
-public class AuthenticationFilters extends AbstractGatewayFilterFactory<AuthenticationFilters.Config> {
+public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
 
     private static final org.slf4j.Logger log =
-            org.slf4j.LoggerFactory.getLogger(AuthenticationFilters.class);
+            org.slf4j.LoggerFactory.getLogger(AuthenticationFilter.class);
 
     private final JWTService jwtService;
 
-    public AuthenticationFilters(JWTService jwtService){
+    public AuthenticationFilter(JWTService jwtService){
         super(Config.class);
         this.jwtService = jwtService;
     }
