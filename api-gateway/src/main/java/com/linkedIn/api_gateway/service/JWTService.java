@@ -1,4 +1,4 @@
-package service;
+package com.linkedIn.api_gateway.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
