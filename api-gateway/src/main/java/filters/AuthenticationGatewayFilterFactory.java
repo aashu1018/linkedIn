@@ -9,14 +9,14 @@ import org.springframework.web.server.ServerWebExchange;
 import service.JWTService;
 
 @Component
-public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
+public class AuthenticationGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthenticationGatewayFilterFactory.Config> {
 
     private static final org.slf4j.Logger log =
-            org.slf4j.LoggerFactory.getLogger(AuthenticationFilter.class);
+            org.slf4j.LoggerFactory.getLogger(AuthenticationGatewayFilterFactory.class);
 
     private final JWTService jwtService;
 
-    public AuthenticationFilter(JWTService jwtService){
+    public AuthenticationGatewayFilterFactory(JWTService jwtService){
         super(Config.class);
         this.jwtService = jwtService;
     }

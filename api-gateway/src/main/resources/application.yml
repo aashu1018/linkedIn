@@ -24,3 +24,4 @@ spring:
             - Path=/api/v1/posts/**
           filters:
             - StripPrefix=2
+            - name: Authentication
