@@ -1,5 +1,6 @@
 package com.linkedIn.posts_service.controller;
 
+import com.linkedIn.posts_service.auth.UserContextHolder;
 import com.linkedIn.posts_service.dto.PostCreateRequestDTO;
 import com.linkedIn.posts_service.dto.PostDTO;
 import com.linkedIn.posts_service.service.PostsService;
@@ -25,8 +26,7 @@ public class PostsController {
     }
 
     @GetMapping("/{postId}")
-    private ResponseEntity<PostDTO> getPost(@PathVariable Long postId, HttpServletRequest httpServletRequest){
-        String userId = httpServletRequest.getHeader("X-User-Id");
+    private ResponseEntity<PostDTO> getPost(@PathVariable Long postId){
         PostDTO post = postsService.getPostById(postId);
         return ResponseEntity.ok(post);
     }
